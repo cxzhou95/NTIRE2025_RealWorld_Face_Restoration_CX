@@ -272,7 +272,7 @@ def parse_args() -> Namespace:
 
     return parser.parse_args()
 
-def main(model_dir, input_path=None, output_path=None, device=None):
+def main(model_dir=None, input_path=None, output_path=None, device=None):
     # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     device = check_device()
     print(f'Running on device: {device}')

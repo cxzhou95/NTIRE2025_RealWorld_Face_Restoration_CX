@@ -273,6 +273,8 @@ def parse_args() -> Namespace:
     return parser.parse_args()
 
 def main(model_dir=None, input_path=None, output_path=None, device='cuda'):
+    args = parse_args()
+    print(args)
     # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     device = check_device(device)
     print(f'Running on device: {device}')
@@ -280,8 +282,7 @@ def main(model_dir=None, input_path=None, output_path=None, device='cuda'):
     set_seed(args.seed)
 
     CustomInferenceLoop(args).run()
-    args = parse_args()
-    print(args)
+
 
 
     # ------------------------ set up parameters ------------------------

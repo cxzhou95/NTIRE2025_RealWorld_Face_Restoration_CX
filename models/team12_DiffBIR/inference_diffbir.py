@@ -242,6 +242,17 @@ def parse_args() -> Namespace:
         default=0.0,
         help="Learning rate of optimizing the guidance loss function.",
     )
+    parser.add_argument(
+        "--n_samples", type=int, default=1, help="Number of samples for each image."
+    )
+
+    parser.add_argument("--seed", type=int, default=231)
+    parser.add_argument(
+        "--precision", type=str, default="fp32", choices=["fp32", "fp16", "bf16"]
+    )
+    parser.add_argument("--llava_bit", type=str, default="4", choices=["16", "8", "4"])
+
+    '''
     # common parameters
     parser.add_argument(
         "--input",
@@ -249,22 +260,18 @@ def parse_args() -> Namespace:
         required=True,
         help="Path to folder that contains your low-quality images.",
     )
-    parser.add_argument(
-        "--n_samples", type=int, default=1, help="Number of samples for each image."
-    )
+    
     parser.add_argument(
         "--output", type=str, required=True, help="Path to save restored results."
     )
-    parser.add_argument("--seed", type=int, default=231)
-    parser.add_argument(
-        "--precision", type=str, default="fp32", choices=["fp32", "fp16", "bf16"]
-    )
-    parser.add_argument("--llava_bit", type=str, default="4", choices=["16", "8", "4"])
-
+    
+    '''
     return parser.parse_args()
 
 def main(model_dir=None, input_path=None, output_path=None, device='cuda'):
     args = parse_args()
+    args.input = input_path
+    args.output = output_path
     print(args)
     # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     device = check_device(device)

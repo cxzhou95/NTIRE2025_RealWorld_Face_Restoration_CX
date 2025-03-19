@@ -1,5 +1,6 @@
 from types import SimpleNamespace
 
+import os
 import torch
 
 from accelerate.utils import set_seed

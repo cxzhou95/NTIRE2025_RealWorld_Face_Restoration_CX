@@ -275,25 +275,14 @@ def main(model_dir=None, input_path=None, output_path=None, device='cuda'):
     print(args)
     # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     device = check_device(device)
-    print(f'Running on device: {device}')
-    args.device = check_device(args.device)
+    args.device = check_device(device)
     set_seed(args.seed)
 
+    args.sd_path = os.path.join(model_dir, 'v2-1_512-ema-pruned.ckpt')
+    args.ckpt = os.path.join(model_dir, '0314_FFHQ_filterd_fusion_90000.pt')
+    args.swinir_path = os.path.join(model_dir, 'face_swinir_v1.ckpt')
+
     CustomInferenceLoop(args).run()
-
-
-
-    # ------------------------ set up parameters ------------------------
-    task = face
-    upscale = 1
-    train_cfg = 'configs/train.yaml'
-    sampler = 'spaced'
-    steps = 50
-    captioner = None
-    pos_prompt = ''
-    neg_prompt = 'low quality, blurry, low-resolution, noisy, unsharp, weird textures'
-    cfg_scale = 4.0
-    precision = 'fp32'
 
 if __name__ == "__main__":
     main()

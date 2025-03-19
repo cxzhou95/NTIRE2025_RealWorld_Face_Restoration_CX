@@ -3,7 +3,7 @@ from argparse import ArgumentParser, Namespace
 import torch
 
 from accelerate.utils import set_seed
-from diffbir.inference import (
+from .diffbir.inference import (
     BSRInferenceLoop,
     BFRInferenceLoop,
     BIDInferenceLoop,

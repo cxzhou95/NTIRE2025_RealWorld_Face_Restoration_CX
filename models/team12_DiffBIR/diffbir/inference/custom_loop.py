@@ -37,7 +37,7 @@ class CustomInferenceLoop(InferenceLoop):
         self.cldm: ControlLDM = instantiate_from_config(self.train_cfg.model.cldm)
 
         # load pre-trained SD weight
-        sd_weight = torch.load(self.train_cfg.train.sd_path, map_location="cpu")
+        sd_weight = torch.load(self.args.sd_path, map_location="cpu")
         sd_weight = sd_weight["state_dict"]
         unused, missing = self.cldm.load_pretrained_sd(sd_weight)
         print(
@@ -65,7 +65,7 @@ class CustomInferenceLoop(InferenceLoop):
     def load_cleaner(self) -> None:
         # NOTE: Use SwinIR as stage-1 model. Change it if you want.
         self.cleaner: SwinIR = instantiate_from_config(self.train_cfg.model.swinir)
-        weight = torch.load(self.train_cfg.train.swinir_path, map_location="cpu")
+        weight = torch.load(self.args.swinir_path, map_location="cpu")
         if "state_dict" in weight:
             weight = weight["state_dict"]
         weight = {

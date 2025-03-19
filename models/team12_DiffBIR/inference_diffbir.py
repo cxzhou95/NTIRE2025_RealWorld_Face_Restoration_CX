@@ -44,37 +44,32 @@ def parse_args() -> Namespace:
     parser.add_argument(
         "--task",
         type=str,
-        default="sr",
+        default="face",
         choices=["sr", "face", "denoise", "unaligned_face"],
         help="Task you want to do. Ignore this option if you are using self-trained model.",
     )
     parser.add_argument(
-        "--upscale", type=float, default=4, help="Upscale factor of output."
+        "--upscale", type=float, default=1, help="Upscale factor of output."
     )
     parser.add_argument(
         "--version",
         type=str,
-        default="v2.1",
+        default="custom",
         choices=["v1", "v2", "v2.1", "custom"],
         help="DiffBIR model version.",
     )
     parser.add_argument(
         "--train_cfg",
         type=str,
-        default="",
+        default="configs/train.yaml",
         help="Path to training config. Only works when version is custom.",
     )
-    parser.add_argument(
-        "--ckpt",
-        type=str,
-        default="",
-        help="Path to saved checkpoint. Only works when version is custom.",
-    )
+
     # sampling parameters
     parser.add_argument(
         "--sampler",
         type=str,
-        default="edm_dpm++_3m_sde",
+        default="spaced",
         choices=[
             "dpm++_m2",
             "spaced",
@@ -96,7 +91,7 @@ def parse_args() -> Namespace:
     parser.add_argument(
         "--steps",
         type=int,
-        default=10,
+        default=50,
         help="Sampling steps. More steps, more details.",
     )
     parser.add_argument(
@@ -152,13 +147,13 @@ def parse_args() -> Namespace:
         "--captioner",
         type=str,
         choices=["none", "llava", "ram"],
-        default="llava",
+        default="none",
         help="Select a model to describe the content of your input image.",
     )
     parser.add_argument(
         "--pos_prompt",
         type=str,
-        default=DEFAULT_POS_PROMPT,
+        default='',
         help=(
             "Descriptive words for 'good image quality'. "
             "It can also describe the things you WANT to appear in the image."
@@ -167,14 +162,14 @@ def parse_args() -> Namespace:
     parser.add_argument(
         "--neg_prompt",
         type=str,
-        default=DEFAULT_NEG_PROMPT,
+        default='low quality, blurry, low-resolution, noisy, unsharp, weird textures',
         help=(
             "Descriptive words for 'bad image quality'. "
             "It can also describe the things you DON'T WANT to appear in the image."
         ),
     )
     parser.add_argument(
-        "--cfg_scale", type=float, default=6.0, help="Classifier-free guidance scale."
+        "--cfg_scale", type=float, default=4.0, help="Classifier-free guidance scale."
     )
     parser.add_argument(
         "--rescale_cfg",
@@ -261,12 +256,8 @@ def parse_args() -> Namespace:
         "--output", type=str, required=True, help="Path to save restored results."
     )
     parser.add_argument("--seed", type=int, default=231)
-    # mps has not been tested
     parser.add_argument(
-        "--device", type=str, default="cuda", choices=["cpu", "cuda", "mps"]
-    )
-    parser.add_argument(
-        "--precision", type=str, default="fp16", choices=["fp32", "fp16", "bf16"]
+        "--precision", type=str, default="fp32", choices=["fp32", "fp16", "bf16"]
     )
     parser.add_argument("--llava_bit", type=str, default="4", choices=["16", "8", "4"])
 

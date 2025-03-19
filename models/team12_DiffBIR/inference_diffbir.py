@@ -1,4 +1,4 @@
-from argparse import ArgumentParser, Namespace
+from types import SimpleNamespace
 
 import torch
 
@@ -269,10 +269,49 @@ def parse_args() -> Namespace:
     return parser.parse_args()
 
 def main(model_dir=None, input_path=None, output_path=None, device='cuda'):
-    args = parse_args()
+    args = SimpleNamespace()
+    args.task = 'face'
+    args.upscale = 1
+    args.version = 'custom'
+    args.train_cfg = 'configs/train.yaml'
+    args.sampler = 'spaced'
+    args.steps = 50
+    args.start_point_type = 'noise'
+    args.cleaner_tiled = False
+    args.cleaner_tile_size = 512
+    args.cleaner_tile_stride = 256
+    args.vae_encoder_tiled = False
+    args.vae_encoder_tile_size = 256
+    args.vae_decoder_tiled = False
+    args.vae_decoder_tile_size = 256
+    args.cldm_tiled = False
+    args.cldm_tile_size = 512
+    args.cldm_tile_stride = 256
+    args.captioner = 'none'
+    args.pos_prompt = ''
+    args.neg_prompt = 'low quality, blurry, low-resolution, noisy, unsharp, weird textures'
+    args.cfg_scale = 4
+    args.rescale_cfg = False
+    args.noise_aug = 0
+    args.s_churn = 0
+    args.s_tmin = 0
+    args.s_tmax = 300
+    args.s_noise = 1
+    args.eta = 1
+    args.order = 1
+    args.strength = 1
+    args.batch_size = 1
+    args.guidance = False
+    args.g_loss = 'w_mse'
+    args.g_scale = 0.0
+    args.n_samples = 1
+    args.seed = 231
+    args.precision = 'fp32'
+    args.llava_bit = '4'
+
     args.input = input_path
     args.output = output_path
-    print(args)
+
     # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     device = check_device(device)
     args.device = check_device(device)

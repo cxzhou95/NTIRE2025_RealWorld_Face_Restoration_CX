@@ -84,7 +84,7 @@ def main(model_dir=None, input_path=None, output_path=None, device='cuda'):
     args.input = input_path
     args.output = output_path
 
-    args.device = device
+    args.device = check_device(device)
     set_seed(args.seed)
 
     args.sd_path = os.path.join(model_dir, 'v2-1_512-ema-pruned.ckpt')

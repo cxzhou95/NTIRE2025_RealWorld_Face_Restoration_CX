@@ -197,7 +197,8 @@ class InferenceLoop:
             for i in range(num_batches):
                 n_inputs = min((i + 1) * batch_size, n_samples) - i * batch_size
                 # with torch.autocast(self.args.device, auto_cast_type):
-                with torch.amp.autocast(self.args.device):
+                # with torch.amp.autocast(self.args.device):
+                if True:
                     batch_samples = self.pipeline.run(
                         np.tile(lq[None], (n_inputs, 1, 1, 1)),
                         self.args.steps,

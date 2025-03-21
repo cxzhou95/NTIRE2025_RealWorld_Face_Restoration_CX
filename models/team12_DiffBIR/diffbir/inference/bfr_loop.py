@@ -20,7 +20,7 @@ class BFRInferenceLoop(InferenceLoop):
             OmegaConf.load(self.args.train_cfg).model.swinir
         )
         # weight = load_model_from_url(MODELS["swinir_face"])
-        weight = load_model_from_path(args.swinir_path)
+        weight = load_model_from_path(self.args.swinir_path)
         self.cleaner.load_state_dict(weight, strict=True)
         self.cleaner.eval().to(self.args.device)
 

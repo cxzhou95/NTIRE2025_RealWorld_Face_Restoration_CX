@@ -245,6 +245,7 @@ class InferenceLoop:
             save_path = os.path.join(self.save_dir, file_name)
             Image.fromarray(sample).save(save_path)
             print(f"save result to {save_path}")
+        '''
         csv_path = os.path.join(self.save_dir, "prompt.csv")
         df = pd.DataFrame(
             {
@@ -257,3 +258,4 @@ class InferenceLoop:
             df.to_csv(csv_path, index=None, mode="a", header=None)
         else:
             df.to_csv(csv_path, index=None)
+        '''

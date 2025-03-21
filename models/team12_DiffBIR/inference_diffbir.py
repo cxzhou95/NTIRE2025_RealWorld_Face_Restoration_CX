@@ -87,8 +87,8 @@ def main(model_dir=None, input_path=None, output_path=None, device='cuda'):
     args.device = check_device(device)
     set_seed(args.seed)
 
-    args.sd_path = os.path.join(model_dir, 'v2-1_512-ema-pruned.ckpt')
-    args.ckpt = os.path.join(model_dir, '0314_FFHQ_filterd_fusion_90000.pt')
+    args.sd_path = os.path.join(model_dir, 'sd2.1-base-zsnr-laionaes5.ckpt')
+    args.ckpt = os.path.join(model_dir, 'DiffBIR_v2.1.pt')
     args.swinir_path = os.path.join(model_dir, 'face_swinir_v1.ckpt')
 
     CustomInferenceLoop(args).run()

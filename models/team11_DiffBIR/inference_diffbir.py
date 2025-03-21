@@ -88,7 +88,7 @@ def main(model_dir=None, input_path=None, output_path=None, device='cuda'):
     set_seed(args.seed)
 
     args.sd_path = os.path.join(model_dir, 'v2-1_512-ema-pruned.ckpt')
-    args.ckpt = os.path.join(model_dir, 'v2.pth')
+    args.ckpt = os.path.join(model_dir, '0080000.pt')
     args.swinir_path = os.path.join(model_dir, 'face_swinir_v1.ckpt')
 
     # CustomInferenceLoop(args).run()

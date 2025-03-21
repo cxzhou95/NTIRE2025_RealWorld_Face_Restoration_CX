@@ -16,7 +16,7 @@ class BFRInferenceLoop(InferenceLoop):
 
     def load_cleaner(self) -> None:
         self.cleaner: SwinIR = instantiate_from_config(
-            OmegaConf.load(self.args.train_cfg.model.swinir)
+            OmegaConf.load(self.args.train_cfg).model.swinir
         )
         # weight = load_model_from_url(MODELS["swinir_face"])
         weight = load_model_from_path(args.swinir_path)

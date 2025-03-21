@@ -44,8 +44,8 @@ def main(model_dir=None, input_path=None, output_path=None, device='cuda'):
     args = SimpleNamespace()
     args.task = 'face'
     args.upscale = 1
-    args.version = 'custom'
-    args.train_cfg = 'models/team12_DiffBIR/configs/train.yaml'
+    args.version = 'v2'
+    # args.train_cfg = 'models/team12_DiffBIR/configs/train.yaml'
     args.sampler = 'spaced'
     args.steps = 50
     args.start_point_type = 'noise'
@@ -91,7 +91,7 @@ def main(model_dir=None, input_path=None, output_path=None, device='cuda'):
     args.ckpt = os.path.join(model_dir, 'v2.pth')
     args.swinir_path = os.path.join(model_dir, 'face_swinir_v1.ckpt')
 
-    CustomInferenceLoop(args).run()
-
+    # CustomInferenceLoop(args).run()
+    BFRInferenceLoop(args).run()
 if __name__ == "__main__":
     main()

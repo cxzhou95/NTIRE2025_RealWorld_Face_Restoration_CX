@@ -119,6 +119,14 @@ def load_model_from_url(url: str) -> Dict[str, torch.Tensor]:
         sd = {k[len("module.") :]: v for k, v in sd.items()}
     return sd
 
+def load_model_from_path(path: str) -> Dict[str, torch.Tensor]:
+    sd_path = path
+    sd = torch.load(sd_path, map_location="cpu")
+    if "state_dict" in sd:
+        sd = sd["state_dict"]
+    if list(sd.keys())[0].startswith("module"):
+        sd = {k[len("module.") :]: v for k, v in sd.items()}
+    return sd
 
 def sliding_windows(
     h: int, w: int, tile_size: int, tile_stride: int

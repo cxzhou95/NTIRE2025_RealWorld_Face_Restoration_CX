@@ -55,7 +55,8 @@ class InferenceLoop:
             sd_weight = load_model_from_url(MODELS["sd_v2.1_zsnr"])
         else:
             # v1, v2
-            sd_weight = load_model_from_url(MODELS["sd_v2.1"])
+            # sd_weight = load_model_from_url(MODELS["sd_v2.1"])
+            sd_weight = load_model_from_path(args.sd_path)
         unused, missing = self.cldm.load_pretrained_sd(sd_weight)
         print(
             f"load pretrained stable diffusion, "
@@ -73,7 +74,8 @@ class InferenceLoop:
                     f"please use v2 or v2.1 by passsing '--version'"
                 )
         elif self.args.version == "v2":
-            control_weight = load_model_from_url(MODELS["v2"])
+            # control_weight = load_model_from_url(MODELS["v2"])
+            control_weight = load_model_from_path(args.ckpt)
         else:
             # v2.1
             control_weight = load_model_from_url(MODELS["v2.1"])

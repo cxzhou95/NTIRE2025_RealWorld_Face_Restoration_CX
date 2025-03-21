@@ -21,7 +21,7 @@ def select_model(args, device):
         name = f"{model_id:02}_CodeFormer_baseline"
         model_path = os.path.join('model_zoo', 'team00_CodeFormer')
         model_func = CodeFormer
-    elif model_id == 11:
+    elif model_id == 12:
         from models.team11_DiffBIR.inference_diffbir import main as team12_DiffBIR
         name = f"{model_id:02}_DiffBIR"
         model_path = os.path.join('model_zoo', 'team12_DiffBIR')

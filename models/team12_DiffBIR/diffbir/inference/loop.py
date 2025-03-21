@@ -11,6 +11,7 @@ import pandas as pd
 from ..utils.common import (
     instantiate_from_config,
     load_model_from_url,
+    load_model_from_path,
     trace_vram_usage,
     VRAMPeakMonitor,
 )

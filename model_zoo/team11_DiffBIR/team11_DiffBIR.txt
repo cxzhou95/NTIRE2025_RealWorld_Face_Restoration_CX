@@ -1,3 +1,3 @@
-https://drive.google.com/file/d/1NjYgLX-WDr0_x_9vp--3DDOtWGxa_8B9/view?usp=drive_link
-https://drive.google.com/file/d/1cQwRdleWybxFrmV3knSZAvlNU_6bOWIO/view?usp=drive_link
-https://drive.google.com/file/d/1CAqXaR7NMXYqjnpicVThzLqjex_MZpZU/view?usp=sharing
+https://huggingface.co/cxzhou95/ntire/resolve/main/0080000.pt
+https://huggingface.co/cxzhou95/ntire/resolve/main/face_swinir_v1.ckpt
+https://huggingface.co/cxzhou95/ntire/resolve/main/v2-1_512-ema-pruned.ckpt

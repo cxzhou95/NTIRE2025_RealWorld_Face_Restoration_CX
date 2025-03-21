@@ -47,7 +47,7 @@ class InferenceLoop:
 
     def load_cldm(self) -> None:
         self.cldm: ControlLDM = instantiate_from_config(
-            OmegaConf.load("configs/inference/cldm.yaml")
+            OmegaConf.load(self.args.train_cfg).model.cldm
         )
 
         # load pre-trained SD weight
